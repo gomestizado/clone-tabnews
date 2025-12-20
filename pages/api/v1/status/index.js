@@ -1,6 +1,9 @@
-import Server from "next/dist/server/base-server";
+import database from "../../../../infra/database.js";
 
-function status(request, response) {
+async function status(request, response) {
+  const result = await database.query("SELECT 1 + 1 as sum;");
+  console.log(result.rows);
+
   const timestamp = Date.now();
   const dataAtual = new Date(timestamp).toLocaleString("pt-BR");
   const uptime = process.uptime();
